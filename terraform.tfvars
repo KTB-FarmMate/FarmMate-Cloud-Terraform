@@ -40,7 +40,7 @@ nat = {
 # 사용하지 않으면: sg = []
 sg = [
   { 
-    name    = "ssh"
+    name    = "farmmate-sg-ssh"
     ingress = [
       {
         from_port   = 22
@@ -59,7 +59,7 @@ sg = [
     ]
   },
   { 
-    name    = "nat"
+    name    = "farmmate-sg-nat"
     ingress = [
       {
         from_port   = 0
@@ -78,7 +78,7 @@ sg = [
     ]
   },
   { 
-    name    = "nginx"
+    name    = "farmmate-sg-nginx"
     ingress = [
       {
         from_port   = 80
@@ -103,7 +103,7 @@ sg = [
     ]
   },
   { 
-    name    = "jenkins"
+    name    = "farmmate-sg-jenkins"
     ingress = [
       {
         from_port   = 8080
@@ -128,7 +128,7 @@ sg = [
     ]
   },
   { 
-    name    = "spring"
+    name    = "farmmate-sg-spring"
     ingress = [
       {
         from_port   = 8080
@@ -147,7 +147,7 @@ sg = [
     ]
   },
   { 
-    name    = "fastapi"
+    name    = "farmmate-sg-fastapi"
     ingress = [
       {
         from_port   = 8000
