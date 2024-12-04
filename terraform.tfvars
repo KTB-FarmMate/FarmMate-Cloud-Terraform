@@ -293,8 +293,8 @@ ecr_repositories = [
 # S3
 # 사용하지 않으면: s3_buckets = {} 
 s3_buckets = {
-  "lyle_terraform_outputs" = {
-    bucket_name             = "farmmate-terraform-outputs"
+  "farmmate-terraform-outputs" = {
+    bucket_name             = "farmmate-terraform"
     enable_website_hosting  = false          # Outputs 데이터를 웹에서 노출할 필요 없음
     enable_cors             = false          # 브라우저 기반 접근 불필요
     enable_public_access    = false          # 공개 접근 차단
