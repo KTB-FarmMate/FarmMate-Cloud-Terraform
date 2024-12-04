@@ -7,10 +7,10 @@ terraform {
   }
 
   backend "remote" {
-    organization = "lyle_terraform_test"
+    organization = "FarmMate-Cloud"
 
     workspaces {
-      name = "Cloud_terraform_test"
+      name = "FarmMate-Cloud-Terraform"
     }
   }
 }
