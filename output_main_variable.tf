@@ -13,14 +13,6 @@ locals {
     }
     rds_endpoint = var.is_rds && length(module.rds) > 0 ? module.rds[0].rds_endpoint : null
     ecr_repository_urls = module.ecr.repository_urls
-    dynamodb_tables_info = {
-      for table_name, table in module.dynamodb_tables :
-      table_name => {
-        table_name = table.table_name
-        table_arn  = table.table_arn
-        table_id   = table.table_id
-      }
-    }
   }
 }
 
@@ -38,11 +30,6 @@ output "rds_endpoint" {
 output "ecr_repository_urls" {
   value       = local.outputs.ecr_repository_urls
   description = "각 ECR 리포지토리의 URL 목록"
-}
-
-output "dynamodb_tables_info" {
-  value       = local.outputs.dynamodb_tables_info
-  description = "생성된 DynamoDB 테이블 정보 목록"
 }
 
 # S3에 outputs.json 파일을 업로드하는 리소스입니다.
