@@ -34,7 +34,7 @@ output "ecr_repository_urls" {
 
 # S3에 outputs.json 파일을 업로드하는 리소스입니다.
 resource "aws_s3_object" "outputs" {
-  bucket = module.s3_buckets["Farmmate-terraform-outputs"].bucket_id
+  bucket = module.s3_buckets["farmmate-terraform-outputs"].bucket_id
   key    = "outputs.json"
   content = jsonencode(local.outputs)
   acl    = "private"  # 데이터 보호를 위해 파일 접근 권한 설정

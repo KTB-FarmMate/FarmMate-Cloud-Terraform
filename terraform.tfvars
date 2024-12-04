@@ -2,7 +2,7 @@
 region = "ap-northeast-2"
 
 vpc_config = {
-    name       = "Farmmate"
+    name       = "farmmate "
     cidr_block = "192.168.0.0/16"
 }
 
@@ -176,8 +176,8 @@ instances = [
     instance_type        = "t3.nano"
     volume               = 10
     is_public            = true
-    subnet_name          = "Farmmate-subnet-public1"
-    security_group_names = ["Farmmate-sg-nat"]
+    subnet_name          = "farmmate -subnet-public1"
+    security_group_names = ["farmmate -sg-nat"]
   },
   {
     name                 = "nginx_cloud"
@@ -185,8 +185,8 @@ instances = [
     instance_type        = "t3.micro"
     volume               = 10
     is_public            = true
-    subnet_name          = "Farmmate-subnet-public1"
-    security_group_names = ["Farmmate-sg-ssh", "Farmmate-sg-nginx"]
+    subnet_name          = "farmmate -subnet-public1"
+    security_group_names = ["farmmate -sg-ssh", "farmmate -sg-nginx"]
   },
   {
     name                 = "nginx_service"
@@ -194,8 +194,8 @@ instances = [
     instance_type        = "t3.micro"
     volume               = 20
     is_public            = true
-    subnet_name          = "Farmmate-subnet-public2"
-    security_group_names = ["Farmmate-sg-ssh", "Farmmate-sg-nginx"]
+    subnet_name          = "farmmate -subnet-public2"
+    security_group_names = ["farmmate -sg-ssh", "farmmate -sg-nginx"]
   },
   {
     name                 = "jenkins"
@@ -203,8 +203,8 @@ instances = [
     instance_type        = "t3.micro"
     volume               = 20
     is_public            = true
-    subnet_name          = "Farmmate-subnet-private1"
-    security_group_names = ["Farmmate-sg-ssh", "Farmmate-sg-jenkins"]
+    subnet_name          = "farmmate -subnet-private1"
+    security_group_names = ["farmmate -sg-ssh", "farmmate -sg-jenkins"]
   },
   {
     name                 = "api"
@@ -212,8 +212,8 @@ instances = [
     instance_type        = "t3.micro"
     volume               = 20
     is_public            = true
-    subnet_name          = "Farmmate-subnet-private2"
-    security_group_names = ["Farmmate-sg-ssh", "Farmmate-sg-spring"]
+    subnet_name          = "farmmate -subnet-private2"
+    security_group_names = ["farmmate -sg-ssh", "farmmate -sg-spring"]
   },
   {
     name                 = "ai"
@@ -221,8 +221,8 @@ instances = [
     instance_type        = "t3.micro"
     volume               = 20
     is_public            = true
-    subnet_name          = "Farmmate-subnet-private2"
-    security_group_names = ["Farmmate-sg-ssh", "Farmmate-sg-fastapi"]
+    subnet_name          = "farmmate -subnet-private2"
+    security_group_names = ["farmmate -sg-ssh", "farmmate -sg-fastapi"]
   },
 ]
 
@@ -232,7 +232,7 @@ is_rds = true
 
 rds_sg = [ 
   { 
-    name    = "mysql"
+    name    = "farmmate -sg-rds-mysql"
     ingress = [
       {
         from_port   = 3306
@@ -262,7 +262,7 @@ rds_config = {
   instance_class        = "db.t4g.micro"
   username              = "root"
   password              = "1q2w3e4r!"
-  security_group_names  = ["Farmmate-sg-rds-mysql"]
+  security_group_names  = ["farmmate -sg-rds-mysql"]
   skip_final_snapshot   = true
 }
 
@@ -271,7 +271,7 @@ rds_config = {
 # 사용하지 않으면: ecr_repositories = []
 ecr_repositories = [
   {
-    name                   = "Farmmate-api"
+    name                   = "farmmate -api"
     image_tag_mutability   = "MUTABLE"
     image_scanning_enabled = false
     lifecycle_policy       = false 
@@ -280,7 +280,7 @@ ecr_repositories = [
     }
   },
   {
-    name                   = "Farmmate-ai"
+    name                   = "farmmate -ai"
     image_tag_mutability   = "MUTABLE"
     image_scanning_enabled = false
     lifecycle_policy       = true
@@ -294,7 +294,7 @@ ecr_repositories = [
 # 사용하지 않으면: s3_buckets = {} 
 s3_buckets = {
   "lyle_terraform_outputs" = {
-    bucket_name             = "Farmmate-terraform-outputs"
+    bucket_name             = "farmmate -terraform-outputs"
     enable_website_hosting  = false          # Outputs 데이터를 웹에서 노출할 필요 없음
     enable_cors             = false          # 브라우저 기반 접근 불필요
     enable_public_access    = false          # 공개 접근 차단
@@ -305,7 +305,7 @@ s3_buckets = {
     environment             = "production"
   },
   # "bucket2" = {
-  #   bucket_name             = "terraform-farmmate-my-example-bucket-2"
+  #   bucket_name             = "terraform-farmmate -my-example-bucket-2"
   #   enable_website_hosting  = false
   #   enable_cors             = false
   #   enable_public_access    = false
