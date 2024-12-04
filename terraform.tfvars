@@ -176,7 +176,7 @@ instances = [
     instance_type        = "t3.nano"
     volume               = 10
     is_public            = true
-    subnet_name          = "farmmate-subnet-public1"
+    subnet_name          = "public1"
     security_group_names = ["farmmate-sg-nat"]
   },
   {
@@ -185,7 +185,7 @@ instances = [
     instance_type        = "t3.micro"
     volume               = 10
     is_public            = true
-    subnet_name          = "farmmate-subnet-public1"
+    subnet_name          = "public1"
     security_group_names = ["farmmate-sg-ssh", "farmmate-sg-nginx"]
   },
   {
@@ -194,7 +194,7 @@ instances = [
     instance_type        = "t3.micro"
     volume               = 20
     is_public            = true
-    subnet_name          = "farmmate-subnet-public2"
+    subnet_name          = "public2"
     security_group_names = ["farmmate-sg-ssh", "farmmate-sg-nginx"]
   },
   {
@@ -203,7 +203,7 @@ instances = [
     instance_type        = "t3.micro"
     volume               = 20
     is_public            = true
-    subnet_name          = "farmmate-subnet-private1"
+    subnet_name          = "private1"
     security_group_names = ["farmmate-sg-ssh", "farmmate-sg-jenkins"]
   },
   {
@@ -212,7 +212,7 @@ instances = [
     instance_type        = "t3.micro"
     volume               = 20
     is_public            = true
-    subnet_name          = "farmmate-subnet-private2"
+    subnet_name          = "private2"
     security_group_names = ["farmmate-sg-ssh", "farmmate-sg-spring"]
   },
   {
@@ -221,7 +221,7 @@ instances = [
     instance_type        = "t3.micro"
     volume               = 20
     is_public            = true
-    subnet_name          = "farmmate-subnet-private2"
+    subnet_name          = "private2"
     security_group_names = ["farmmate-sg-ssh", "farmmate-sg-fastapi"]
   },
 ]
