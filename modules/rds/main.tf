@@ -1,9 +1,9 @@
 # 서브넷 그룹 생성 (RDS가 사용할 서브넷을 그룹화)
 resource "aws_db_subnet_group" "this" {
-  name       = "${var.rds_name}-subnet-group"
+  name       = lower("${var.rds_name}-db-subnet-group")
   subnet_ids = var.subnet_ids
 
-  tags = merge(var.tags, { Name = "${var.rds_name}-subnet-group" })
+  tags = merge(var.tags, { Name = "${var.rds_name}-db-subnet-group" })
 
   description = "Subnet group for RDS instance ${var.rds_name}"
 }
