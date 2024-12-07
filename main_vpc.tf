@@ -62,7 +62,12 @@ module "public_route_table" {
   source  = "./modules/route_table"
   name    = "${module.vpc.name}-rtb-public"
   vpc_id  = module.vpc.vpc_id
-  subnets = [for key, subnet in module.public_subnet : subnet.subnet_id]
+  # 프라이빗 서브넷을 개발 시에 퍼블릭으로 돌려놓고 하기 위함 
+  # subnets = [for key, subnet in module.public_subnet : subnet.subnet_id]
+  subnets = concat(
+    [for key, subnet in module.public_subnet : subnet.subnet_id],
+    [for key, subnet in module.private_subnet : subnet.subnet_id]
+  )
 
   ipv4_routes = [
     {
@@ -77,7 +82,8 @@ module "private_route_table" {
   source  = "./modules/route_table"
   name    = "${module.vpc.name}-rtb-private"
   vpc_id  = module.vpc.vpc_id
-  subnets = [for key, subnet in module.private_subnet : subnet.subnet_id]
+  # 프라이빗 서브넷을 개발 시에 퍼블릭으로 돌려놓고 하기 위함 
+  subnets = [] # for key, subnet in module.private_subnet : subnet.subnet_id 
 
   ipv4_routes = [
     {

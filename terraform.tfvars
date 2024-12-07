@@ -32,7 +32,7 @@ private_subnets = {
 # NAT gateway
 # 사용하지 않으면 enabled = false
 nat = {
-    enabled            = true
+    enabled            = false
     public_subnet_name = "public1"
 }
 
@@ -182,7 +182,64 @@ sg = [
         cidr_blocks = ["0.0.0.0/0"]
       }
     ]
-  }
+  },
+  { 
+    name    = "farmmate-sg-prometheus"
+    ingress = [
+      {
+        from_port   = 9090
+        to_port     = 9090
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    ]
+    egress = [
+      {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    ]
+  },
+  { 
+    name    = "farmmate-sg-prometheus-agent"
+    ingress = [
+      {
+        from_port   = 9100
+        to_port     = 9100
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    ]
+    egress = [
+      {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    ]
+  },
+  { 
+    name    = "farmmate-sg-grafana"
+    ingress = [
+      {
+        from_port   = 3000
+        to_port     = 3000
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    ]
+    egress = [
+      {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    ]
+  },
 ]
 
 # EC2
@@ -204,7 +261,7 @@ instances = [
     volume               = 10
     is_public            = true
     subnet_name          = "public1"
-    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-nginx"]
+    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-nginx", "farmmate-sg-prometheus-agent"]
   },
   {
     name                 = "nginx_service"
@@ -213,7 +270,7 @@ instances = [
     volume               = 20
     is_public            = true
     subnet_name          = "public2"
-    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-nginx"]
+    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-nginx", "farmmate-sg-prometheus-agent"]
   },
   {
     name                 = "jenkins"
@@ -222,7 +279,7 @@ instances = [
     volume               = 20
     is_public            = false
     subnet_name          = "private1"
-    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-jenkins"]
+    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-jenkins", "farmmate-sg-prometheus-agent"]
   },
   {
     name                 = "api"
@@ -231,7 +288,7 @@ instances = [
     volume               = 20
     is_public            = false
     subnet_name          = "private2"
-    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-spring"]
+    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-spring", "farmmate-sg-prometheus-agent"]
   },
   {
     name                 = "ai"
@@ -240,7 +297,25 @@ instances = [
     volume               = 20
     is_public            = false
     subnet_name          = "private2"
-    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-fastapi"]
+    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-fastapi", "farmmate-sg-prometheus-agent"]
+  },
+  {
+    name                 = "prometheus"
+    ami                  = "ami-0f1e61a80c7ab943e" # Amazon Linux 2023
+    instance_type        = "t3.small"
+    volume               = 20
+    is_public            = false
+    subnet_name          = "private1"
+    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-prometheus"]
+  },
+  {
+    name                 = "grafana"
+    ami                  = "ami-0f1e61a80c7ab943e" # Amazon Linux 2023
+    instance_type        = "t3.micro"
+    volume               = 20
+    is_public            = false
+    subnet_name          = "private1"
+    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-grafana"]
   },
 ]
 
