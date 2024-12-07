@@ -91,6 +91,12 @@ sg = [
         to_port     = 443
         protocol    = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
+      },
+      {
+        from_port   = 9113
+        to_port     = 9113
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
       }
     ]
     egress = [
