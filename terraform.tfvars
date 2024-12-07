@@ -321,7 +321,7 @@ instances = [
     volume               = 20
     is_public            = false
     subnet_name          = "private1"
-    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-grafana"]
+    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-grafana", "farmmate-sg-prometheus-agent"]
   },
 ]
 
