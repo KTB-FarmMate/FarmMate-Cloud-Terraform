@@ -222,7 +222,7 @@ sg = [
         to_port     = 9100
         protocol    = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
-      }
+      },
     ]
     egress = [
       {
@@ -242,6 +242,88 @@ sg = [
         protocol    = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
       }
+    ]
+    egress = [
+      {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    ]
+  },
+  { 
+    name    = "farmmate-sg-logstash"
+    ingress = [
+      {
+        from_port   = 5044
+        to_port     = 5044
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+      },
+      {
+        from_port   = 9600
+        to_port     = 9600
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    ]
+    egress = [
+      {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    ]
+  },
+  { 
+    name    = "farmmate-sg-elasticsearch"
+    ingress = [
+      {
+        from_port   = 9200
+        to_port     = 9200
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+      },
+    ]
+    egress = [
+      {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    ]
+  },
+  { 
+    name    = "farmmate-sg-kibana"
+    ingress = [
+      {
+        from_port   = 5601
+        to_port     = 5601
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+      },
+    ]
+    egress = [
+      {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    ]
+  },
+  { 
+    name    = "farmmate-sg-filebeat"
+    ingress = [
+      {
+        from_port   = 5044
+        to_port     = 5044
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+      },
     ]
     egress = [
       {
@@ -273,7 +355,7 @@ instances = [
     volume               = 10
     is_public            = true
     subnet_name          = "public1"
-    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-nginx", "farmmate-sg-prometheus-agent"]
+    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-nginx", "farmmate-sg-prometheus-agent", "farmmate-sg-filebeat"]
   },
   {
     name                 = "nginx_service"
@@ -282,7 +364,7 @@ instances = [
     volume               = 20
     is_public            = true
     subnet_name          = "public2"
-    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-nginx", "farmmate-sg-prometheus-agent"]
+    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-nginx", "farmmate-sg-prometheus-agent", "farmmate-sg-filebeat"]
   },
   {
     name                 = "jenkins"
@@ -291,7 +373,7 @@ instances = [
     volume               = 20
     is_public            = false
     subnet_name          = "private1"
-    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-jenkins", "farmmate-sg-prometheus-agent"]
+    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-jenkins", "farmmate-sg-prometheus-agent", "farmmate-sg-filebeat"]
   },
   {
     name                 = "api"
@@ -300,7 +382,7 @@ instances = [
     volume               = 20
     is_public            = false
     subnet_name          = "private2"
-    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-spring", "farmmate-sg-prometheus-agent"]
+    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-spring", "farmmate-sg-prometheus-agent", "farmmate-sg-filebeat"]
   },
   {
     name                 = "ai"
@@ -309,7 +391,7 @@ instances = [
     volume               = 20
     is_public            = false
     subnet_name          = "private2"
-    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-fastapi", "farmmate-sg-prometheus-agent"]
+    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-fastapi", "farmmate-sg-prometheus-agent", "farmmate-sg-filebeat"]
   },
   {
     name                 = "prometheus"
@@ -318,7 +400,7 @@ instances = [
     volume               = 20
     is_public            = false
     subnet_name          = "private1"
-    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-prometheus"]
+    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-prometheus", "farmmate-sg-filebeat"]
   },
   {
     name                 = "grafana"
@@ -328,6 +410,33 @@ instances = [
     is_public            = false
     subnet_name          = "private1"
     security_group_names = ["farmmate-sg-ssh", "farmmate-sg-grafana", "farmmate-sg-prometheus-agent"]
+  },
+  {
+    name                 = "logstash"
+    ami                  = "ami-0f1e61a80c7ab943e" # Amazon Linux 2023
+    instance_type        = "t3.small"
+    volume               = 20
+    is_public            = false
+    subnet_name          = "private1"
+    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-logstash", "farmmate-sg-prometheus-agent"]
+  },
+  {
+    name                 = "elasticSearch"
+    ami                  = "ami-0f1e61a80c7ab943e" # Amazon Linux 2023
+    instance_type        = "t3.small"
+    volume               = 50
+    is_public            = false
+    subnet_name          = "private1"
+    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-elasticsearch", "farmmate-sg-prometheus-agent"]
+  },
+  {
+    name                 = "kibana"
+    ami                  = "ami-0f1e61a80c7ab943e" # Amazon Linux 2023
+    instance_type        = "t3.micro"
+    volume               = 20
+    is_public            = false
+    subnet_name          = "private1"
+    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-kibana", "farmmate-sg-prometheus-agent"]
   },
 ]
 
