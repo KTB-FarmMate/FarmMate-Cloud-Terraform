@@ -334,6 +334,25 @@ sg = [
       }
     ]
   },
+  { 
+    name    = "farmmate-sg-ngrinder"
+    ingress = [
+      {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+      },
+    ]
+    egress = [
+      {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    ]
+  },
 ]
 
 # EC2
@@ -445,7 +464,7 @@ instances = [
     volume               = 20
     is_public            = false
     subnet_name          = "private1"
-    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-spring", "farmmate-sg-prometheus-agent"]
+    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-spring", "farmmate-sg-prometheus-agent", "farmmate-sg-ngrinder"]
   },
 ]
 
