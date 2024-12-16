@@ -423,6 +423,15 @@ instances = [
     security_group_names = ["farmmate-sg-ssh", "farmmate-sg-jenkins", "farmmate-sg-prometheus-agent"]
   },
   {
+    name                 = "jenkins-scaleup"
+    ami                  = "ami-0f1e61a80c7ab943e" # Amazon Linux 2023
+    instance_type        = "t3.small"
+    volume               = 20
+    is_public            = false
+    subnet_name          = "private1"
+    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-jenkins", "farmmate-sg-prometheus-agent"]
+  },
+  {
     name                 = "api2-scaleup"
     ami                  = "ami-0f1e61a80c7ab943e" # Amazon Linux 2023
     instance_type        = "t3.small"
