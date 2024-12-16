@@ -386,6 +386,15 @@ instances = [
     security_group_names = ["farmmate-sg-ssh", "farmmate-sg-nginx", "farmmate-sg-prometheus-agent", "farmmate-sg-filebeat"]
   },
   {
+    name                 = "nginx_service_ai"
+    ami                  = "ami-0f1e61a80c7ab943e" # Amazon Linux 2023
+    instance_type        = "t3.micro"
+    volume               = 10
+    is_public            = true
+    subnet_name          = "public2"
+    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-nginx", "farmmate-sg-prometheus-agent", "farmmate-sg-filebeat"]
+  },
+  {
     name                 = "jenkins"
     ami                  = "ami-0f1e61a80c7ab943e" # Amazon Linux 2023
     instance_type        = "t3.micro"
@@ -394,15 +403,15 @@ instances = [
     subnet_name          = "private1"
     security_group_names = ["farmmate-sg-ssh", "farmmate-sg-jenkins", "farmmate-sg-prometheus-agent", "farmmate-sg-filebeat"]
   },
-  # {
-  #   name                 = "api"
-  #   ami                  = "ami-0f1e61a80c7ab943e" # Amazon Linux 2023
-  #   instance_type        = "t3.micro"
-  #   volume               = 20
-  #   is_public            = false
-  #   subnet_name          = "private2"
-  #   security_group_names = ["farmmate-sg-ssh", "farmmate-sg-spring", "farmmate-sg-prometheus-agent", "farmmate-sg-filebeat"]
-  # },
+  {
+    name                 = "api2-scaleup"
+    ami                  = "ami-0f1e61a80c7ab943e" # Amazon Linux 2023
+    instance_type        = "t3.small"
+    volume               = 20
+    is_public            = false
+    subnet_name          = "private2"
+    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-spring", "farmmate-sg-prometheus-agent", "farmmate-sg-filebeat"]
+  },
   {
     name                 = "api-scaleup"
     ami                  = "ami-0f1e61a80c7ab943e" # Amazon Linux 2023
@@ -448,33 +457,33 @@ instances = [
     subnet_name          = "private1"
     security_group_names = ["farmmate-sg-ssh", "farmmate-sg-logstash", "farmmate-sg-prometheus-agent"]
   },
-  {
-    name                 = "elasticSearch"
-    ami                  = "ami-0f1e61a80c7ab943e" # Amazon Linux 2023
-    instance_type        = "t3.small"
-    volume               = 50
-    is_public            = false
-    subnet_name          = "private1"
-    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-elasticsearch", "farmmate-sg-prometheus-agent"]
-  },
-  {
-    name                 = "kibana"
-    ami                  = "ami-0f1e61a80c7ab943e" # Amazon Linux 2023
-    instance_type        = "t3.micro"
-    volume               = 20
-    is_public            = false
-    subnet_name          = "private1"
-    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-kibana", "farmmate-sg-prometheus-agent"]
-  },
-  {
-    name                 = "loadtest-ngrinder"
-    ami                  = "ami-0f1e61a80c7ab943e" # Amazon Linux 2023
-    instance_type        = "t3.micro"
-    volume               = 20
-    is_public            = false
-    subnet_name          = "private1"
-    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-spring", "farmmate-sg-prometheus-agent", "farmmate-sg-ngrinder"]
-  },
+  # {
+  #   name                 = "elasticSearch"
+  #   ami                  = "ami-0f1e61a80c7ab943e" # Amazon Linux 2023
+  #   instance_type        = "t3.small"
+  #   volume               = 50
+  #   is_public            = false
+  #   subnet_name          = "private1"
+  #   security_group_names = ["farmmate-sg-ssh", "farmmate-sg-elasticsearch", "farmmate-sg-prometheus-agent"]
+  # },
+  # {
+  #   name                 = "kibana"
+  #   ami                  = "ami-0f1e61a80c7ab943e" # Amazon Linux 2023
+  #   instance_type        = "t3.micro"
+  #   volume               = 20
+  #   is_public            = false
+  #   subnet_name          = "private1"
+  #   security_group_names = ["farmmate-sg-ssh", "farmmate-sg-kibana", "farmmate-sg-prometheus-agent"]
+  # },
+  # {
+  #   name                 = "loadtest-ngrinder"
+  #   ami                  = "ami-0f1e61a80c7ab943e" # Amazon Linux 2023
+  #   instance_type        = "t3.micro"
+  #   volume               = 20
+  #   is_public            = false
+  #   subnet_name          = "private1"
+  #   security_group_names = ["farmmate-sg-ssh", "farmmate-sg-spring", "farmmate-sg-prometheus-agent", "farmmate-sg-ngrinder"]
+  # },
 ]
 
 # RDS 
