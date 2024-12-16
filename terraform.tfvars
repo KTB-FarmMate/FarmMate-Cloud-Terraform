@@ -438,6 +438,15 @@ instances = [
     subnet_name          = "private1"
     security_group_names = ["farmmate-sg-ssh", "farmmate-sg-kibana", "farmmate-sg-prometheus-agent"]
   },
+  {
+    name                 = "loadtest-ngrinder"
+    ami                  = "ami-0f1e61a80c7ab943e" # Amazon Linux 2023
+    instance_type        = "t3.micro"
+    volume               = 20
+    is_public            = false
+    subnet_name          = "private1"
+    security_group_names = ["farmmate-sg-ssh", "farmmate-sg-spring", "farmmate-sg-prometheus-agent"]
+  },
 ]
 
 # RDS 
