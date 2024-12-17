@@ -534,7 +534,7 @@ instances = [
 
 # RDS 
 # 사용하지 않으면: is_rds = false
-is_rds = true
+is_rds = false
 
 rds_sg = [ 
   { 
