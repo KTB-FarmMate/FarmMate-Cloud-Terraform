@@ -559,12 +559,12 @@ rds_sg = [
 ]
 
 rds_config = {
-  rds_name              = "mysql"
+  rds_name              = "service"
   allocated_storage     = 20
   max_allocated_storage = 100
-  db_name               = "mydatabase"
+  db_name               = "FARMMATE"
   engine                = "mysql"
-  engine_version        = "8.0.32"
+  engine_version        = "8.0.34"
   instance_class        = "db.t4g.micro"
   username              = "root"
   password              = "1q2w3e4r!"
