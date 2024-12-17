@@ -22,6 +22,7 @@ resource "aws_db_instance" "this" {
   skip_final_snapshot    = var.skip_final_snapshot          # 인스턴스 삭제 시 최종 스냅샷 생성을 건너뜀
   vpc_security_group_ids = var.security_group_ids          # VPC 보안 그룹
   db_subnet_group_name   = aws_db_subnet_group.this.name    # 서브넷 그룹 이름
+  publicly_accessible    = true                             # 퍼블릭 액세스 가능하게 설정
 
   tags = merge(var.tags, { Name = var.rds_name })
 }
