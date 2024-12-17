@@ -424,7 +424,7 @@ instances = [
   },
   {
     name                 = "jenkins-scaleup"
-    ami                  = "ami-0f1e61a80c7ab943e" # Amazon Linux 2023
+    ami                  = "ami-02012f450a9046624" # Jenkins custom AMI
     instance_type        = "t3.small"
     volume               = 20
     is_public            = false
